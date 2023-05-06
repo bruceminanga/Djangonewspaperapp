@@ -13,6 +13,7 @@ werkzeug = "*"
 django-extensions = "*"
 crispy-bootstrap4 = "*"
 crispy-bootstrap5 = "*"
+gunicorn = "*"
 
 [dev-packages]
 
