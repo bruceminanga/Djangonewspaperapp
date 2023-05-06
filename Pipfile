@@ -14,6 +14,9 @@ django-extensions = "*"
 crispy-bootstrap4 = "*"
 crispy-bootstrap5 = "*"
 gunicorn = "*"
+environs = {extras = ["django"], version = "*"}
+psycopg = {extras = ["binary"], version = "*"}
+whitenoise = "*"
 
 [dev-packages]
 
