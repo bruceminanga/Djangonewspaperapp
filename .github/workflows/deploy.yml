@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy to cpanel via ftp
+
+# Controls when the workflow will run
+on:
+    # Triggers the workflow on push or pull request events but only for the "main" branch
+    push:
+        branches: [ "main" ]
+    pull_request:
+        branches: [ "main" ]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Check out code
+                uses: actions/checkout@v4
+
+            -   name: Deploy to cpanel via ftp
+                uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+
+                with:
+                    server: newspaperapp.nurseprofessors.com
+                    username: ${{ secrets.ftp_USERNAME }}
+                    password: ${{ secrets.ftp_PASSWORD }}
+                    local-dir: ../ #path to the directory containing the code to be uploaded.
+                    exclude: ".git/ .github/" #You can specify files/directory to exclude.
+
+                  

@@ -1,0 +1,10 @@
+{
+    "python.pythonPath": "/home/amani/.local/share/virtualenvs/NewsPaper_project-4DLHoa4s/bin/python",
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "autopep8",
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.pylintArgs": [
+        "--load-plugin=pylint-django"]
+
+}

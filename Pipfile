@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+pylint = "*"
+pylint-django = "*"
+autopep8 = "*"
+django-crispy-forms = "*"
+werkzeug = "*"
+django-extensions = "*"
+crispy-bootstrap4 = "*"
+crispy-bootstrap5 = "*"
+gunicorn = "*"
+environs = {extras = ["django"], version = "*"}
+psycopg = {extras = ["binary"], version = "*"}
+whitenoise = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
