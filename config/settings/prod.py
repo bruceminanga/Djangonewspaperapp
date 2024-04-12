@@ -29,7 +29,7 @@ ADMINS = [
     ('Bruce Minanga', 'bruceminanga@gmail.com'),
 ]
 
-ALLOWED_HOSTS = ['nurseprofessors.com', 'www.nurseprofessors.com']
+ALLOWED_HOSTS = ['newspaperapp.nurseprofessors.com']
 
 # DATABASES = {
 #     'default': {
