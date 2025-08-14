@@ -4,7 +4,7 @@ This is a classic newspaper application built with Django. This version has been
 
 The application features user authentication (sign up, log in, log out), article creation, editing, and deletion, and a comment system.
 
-![Newspaper App Screenshot](https://raw.githubusercontent.com/bruceminanga/Djangonewspaperapp/master/screenshots/home.png)
+![Newspaper App Screenshot](https://github.com/bruceminanga/Djangonewspaperapp/blob/main/screenshots/home.png)
 _(Screenshot from the original repository)_
 
 ## Core Technologies
