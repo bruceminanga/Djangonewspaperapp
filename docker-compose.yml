@@ -1,4 +1,5 @@
 # docker-compose.yml
+version: "3.8" # You can remove this line as per the warning
 
 services:
   db:
@@ -6,26 +7,28 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_DB=newspaper_db
-      - POSTGRES_USER=newspaper_user
-      - POSTGRES_PASSWORD=newspaper_password
-    ports: # For debugging the DB from your host machine if needed
+      # These now read from the .env file
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
       - "5432:5432"
 
   web:
     build: .
     command: sh -c "/app/entrypoint.sh"
     volumes:
-      - .:/app # Mounts the project directory for live code reloading
-      - static_volume:/app/staticfiles # Mount static files
+      - .:/app
+      - static_volume:/app/staticfiles
     ports:
       - "8000:8000"
     environment:
-      - SECRET_KEY=super-secret-key-that-should-be-changed
-      - DEBUG=True
-      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1
-      - DATABASE_URL=postgresql://newspaper_user:newspaper_password@db:5432/newspaper_db
-
+      # These also read from the .env file
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      # The DB URL now uses the variables too
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
     depends_on:
       - db
 
