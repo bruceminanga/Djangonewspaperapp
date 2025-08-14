@@ -1,34 +1,58 @@
-{% extends 'base.html' %} 295444 {% block title %} Articles {% endblock title %}
-{% block content %} {% for article in article_list %}
-<div class="card">
-  <div class="card-header">
-    <span class="fw-bold">
-      <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-    </span>
-    &middot;
-    <span class="text-muted">by {{ article.author }} | {{ article.date }}</span>
-  </div>
-  <div class="card-body">
-    {{ article.body }} {% if article.author.pk == request.user.pk %}
-    <a href="{% url 'article_edit' article.pk %}">Edit</a>
-    <a href="{% url 'article_delete' article.pk %}">Delete</a>
-    {% endif %}
-  </div>
-  <div class="card-footer">
-    {% for comment in article.comment_set.all %}
-    <p>
-      <span class="fw-bold"> {{ comment.author }} &middot; </span>
-      {{ comment }}
-    </p>
+{% extends 'base.html' %}
+{% block title %}Articles{% endblock title %}
+{% block content %}
+<section class="py-4">
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-center">📰 Latest Articles</h2>
+
+    {% for article in article_list %}
+    <div class="card shadow-sm mb-4 border-0">
+      <div class="card-header bg-white border-bottom-0">
+        <h4 class="mb-0">
+          <a href="{{ article.get_absolute_url }}" class="text-dark text-decoration-none fw-bold">
+            {{ article.title }}
+          </a>
+        </h4>
+        <small class="text-muted">
+          By {{ article.author }} · {{ article.date }}
+        </small>
+      </div>
+
+      <div class="card-body">
+        <p class="text-muted">
+          {{ article.body|truncatewords:40 }}
+        </p>
+
+        {% if article.author.pk == request.user.pk %}
+          <div class="d-flex gap-2">
+            <a href="{% url 'article_edit' article.pk %}" class="btn btn-outline-primary btn-sm">✏️ Edit</a>
+            <a href="{% url 'article_delete' article.pk %}" class="btn btn-outline-danger btn-sm">🗑 Delete</a>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="card-footer bg-light">
+        <h6 class="fw-bold mb-2">💬 Comments</h6>
+        {% if article.comment_set.all %}
+          {% for comment in article.comment_set.all %}
+            <p class="mb-1">
+              <span class="fw-semibold">{{ comment.author }}</span> ·
+              <small class="text-muted">{{ comment.date }}</small><br>
+              {{ comment }}
+            </p>
+          {% endfor %}
+        {% else %}
+          <small class="text-muted">No comments yet.</small>
+        {% endif %}
+
+        <div class="mt-2">
+          <a href="{{ article.get_absolute_url }}" class="btn btn-sm btn-success">+ Add Comment</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+      <p class="text-center text-muted">No articles have been posted yet.</p>
     {% endfor %}
   </div>
-</div>
-<div class="card-footer text-center text-muted">
-  {% if article.author.pk == request.user.pk %}
-  <a href="{% url 'article_edit' article.pk %}">Edit</a>
-  <a href="{% url 'article_delete' article.pk %}">Delete</a>
-  {% endif %}
-  <a href="{{ article.get_absolute_url }}">New Comment</a>
-</div>
-<br />
-{% endfor %} {% endblock content %}
+</section>
+{% endblock content %}

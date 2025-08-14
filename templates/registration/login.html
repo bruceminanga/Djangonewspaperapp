@@ -1,7 +1,37 @@
-{% extends 'base.html' %} {% block content %}
-<h2>Log In</h2>
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button class="btn btn-success ml-2" type="submit">Log In</button>
-</form>
+{% extends 'base.html' %}
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <h3 class="fw-bold text-center mb-4">🔑 Log In</h3>
+
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+
+              <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-success btn-lg">
+                  ✅ Log In
+                </button>
+              </div>
+            </form>
+
+            <hr class="my-4">
+
+            <p class="text-center mb-0">
+              Don't have an account?
+              <a href="{% url 'signup' %}">Sign up here</a>.
+            </p>
+            <p class="text-center mt-2 mb-0">
+              <a href="{% url 'password_reset' %}">Forgot your password?</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock content %}

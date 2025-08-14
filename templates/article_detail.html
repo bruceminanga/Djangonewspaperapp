@@ -1,12 +1,31 @@
-{% extends 'base.html' %} {% block content %}
-<div class="article-entry">
-  <h2>{{ object.title }}</h2>
-  <p>by {{ object.author }} | {{ object.date }}</p>
-  <p>{{ object.body }}</p>
-</div>
-<p>
-  <a href="{% url 'article_edit' article.pk %}">Edit</a> |
-  <a href="{% url 'article_delete' article.pk %}">Delete</a>
-</p>
-<p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
+{% extends 'base.html' %}
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <div class="card shadow-sm border-0">
+      <div class="card-body p-4">
+        
+        <h1 class="fw-bold mb-2">{{ object.title }}</h1>
+        <p class="text-muted mb-4">
+          ✍️ By {{ object.author }} · {{ object.date }}
+        </p>
+
+        <p class="fs-5">{{ object.body }}</p>
+
+        {% if object.author.pk == request.user.pk %}
+        <div class="mt-4 d-flex gap-2">
+          <a href="{% url 'article_edit' object.pk %}" class="btn btn-outline-primary btn-sm">✏️ Edit</a>
+          <a href="{% url 'article_delete' object.pk %}" class="btn btn-outline-danger btn-sm">🗑 Delete</a>
+        </div>
+        {% endif %}
+
+        <hr class="my-4">
+
+        <a href="{% url 'article_list' %}" class="btn btn-secondary btn-sm">
+          ← Back to All Articles
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock content %}

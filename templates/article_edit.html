@@ -1,7 +1,28 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Edit</h1>
-<form action="" method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button class="btn btn-info ml-2" type="submit">Update</button>
-</form>
+{% extends 'base.html' %}
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <h3 class="fw-bold text-center mb-4">✏️ Edit Article</h3>
+            
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+
+              <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-info btn-lg text-white">
+                  💾 Update
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock content %}

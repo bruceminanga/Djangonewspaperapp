@@ -1,8 +1,32 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Delete</h1>
-<form action="" method="post">
-  {% csrf_token %}
-  <p>Are you sure you want to delete "{{ article.title }}"?</p>
-  <button class="btn btn-danger ml-2" type="submit">Confirm</button>
-</form>
+{% extends 'base.html' %}
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4 text-center">
+            <h3 class="fw-bold text-danger mb-3">⚠️ Delete Article</h3>
+            <p class="mb-4">
+              Are you sure you want to permanently delete 
+              <strong>"{{ article.title }}"</strong>?
+            </p>
+
+            <form method="post">
+              {% csrf_token %}
+              <div class="d-flex justify-content-center gap-2">
+                <button type="submit" class="btn btn-danger">
+                  🗑 Confirm Delete
+                </button>
+                <a href="{% url 'article_list' %}" class="btn btn-secondary">
+                  Cancel
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock content %}
