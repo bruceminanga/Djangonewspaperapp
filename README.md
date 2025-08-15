@@ -54,7 +54,7 @@ These instructions will get you a copy of the project up and running on your loc
     This single command will build the Django image, pull the PostgreSQL image, and start all services in the background.
 
     ```bash
-    docker-compose up --build -d
+    docker compose up --build -d
     ```
 
     The initial build might take a few minutes. Subsequent builds will be much faster thanks to Docker's caching.
@@ -63,7 +63,7 @@ These instructions will get you a copy of the project up and running on your loc
     The `entrypoint.sh` script automatically applies migrations when the container starts. To check logs and ensure this completed successfully, you can run:
 
     ```bash
-    docker-compose logs -f web
+    docker compose logs -f web
     ```
 
     You should see output indicating that migrations are being applied and the Gunicorn server is starting. Press `Ctrl+C` to exit the logs.
@@ -71,7 +71,7 @@ These instructions will get you a copy of the project up and running on your loc
 5.  **Create a Superuser:**
     To access the Django admin panel, you'll need to create a superuser account.
     ```bash
-    docker-compose exec web python manage.py createsuperuser
+    docker compose exec web python manage.py createsuperuser
     ```
     Follow the prompts to enter a username, email, and password.
 
@@ -92,8 +92,8 @@ To run any `manage.py` command, use `docker-compose exec web`:
 
 ```bash
 # Example: Create new migrations after changing your models
-docker-compose exec web python manage.py makemigrations
+docker compose exec web python manage.py makemigrations
 
 # Example: Open a Django shell
-docker-compose exec web python manage.py shell
+docker compose exec web python manage.py shell
 ```
