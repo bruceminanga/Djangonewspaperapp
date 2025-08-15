@@ -9,7 +9,7 @@ The application features user authentication (sign up, log in, log out), article
 ## Core Technologies
 
 - **Backend:** Django 5.0
-- **Database:** sqlite3
+- **Database:** Sqlite3
 - **Web Server:** Gunicorn
 - **Containerization:** Docker, Docker Compose
 
