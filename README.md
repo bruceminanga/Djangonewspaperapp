@@ -88,7 +88,7 @@ This setup is designed for an efficient development workflow.
 
 ### Running Management Commands
 
-To run any `manage.py` command, use `docker-compose exec web`:
+To run any `manage.py` command, use `docker compose exec web`:
 
 ```bash
 # Example: Create new migrations after changing your models
